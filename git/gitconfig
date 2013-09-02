@@ -10,7 +10,7 @@
 [core]
   excludesfile = ~/.gitignore
   attributesfile = ~/.gitattributes
-  editro = vim
+  editor = vim
 
 [credential]
   helper = osxkeychain
