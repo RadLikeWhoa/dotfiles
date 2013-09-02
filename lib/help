@@ -1,0 +1,22 @@
+#!/bin/bash
+
+run_help() {
+
+cat <<EOT
+Sacha Schmid's OS X dotfiles - http://sachaschmid.ch/
+
+Usage: dotfiles [options]
+
+Options:
+  -h, --help      Print this help text
+  --no-packages   brew and npm packages are not updated
+  --no-sync       The repository isn't pulled
+
+Further information is available in the README.
+https://github.com/radlikewhoa/dotfiles
+
+Copyright (c) Sacha Schmid
+Licensed under the MIT license.
+EOT
+
+}

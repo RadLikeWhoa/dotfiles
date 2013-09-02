@@ -1,0 +1,29 @@
+#!/bin/bash
+
+declare -a files=(
+  $HOME/.dotfiles/bash/bash_options
+  $HOME/.dotfiles/bash/bash_exports
+  $HOME/.dotfiles/bash/bash_aliases
+  $HOME/.dotfiles/bash/functions/*
+  $HOME/.dotfiles/bash/bash_prompt
+  $HOME/.dotfiles/bash/bash_rbenv
+  $HOME/.bash_profile.local
+  $HOME/.dotfiles/bash/bash_paths
+)
+
+# Load custom files (prompt, aliases, functions, rbenv, bash completion)
+for index in ${!files[*]}
+do
+  if [[ -r ${files[$index]} ]]; then
+    source ${files[$index]}
+  fi
+done
+
+unset files
+
+bash_completion_path="$(brew --prefix)/etc/bash_completion"
+
+# Load brew's bash completion
+if [[ -r $bash_completion_path ]]; then
+  source $bash_completion_path
+fi

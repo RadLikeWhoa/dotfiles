@@ -1,0 +1,73 @@
+#!/bin/bash
+
+# Example:
+# Sacha at MacBook in dotfiles on master[+!?$]
+# $
+
+BLACK="\[$(tput setaf 0)\]"
+CYAN="\[$(tput setaf 37)\]"
+GREEN="\[$(tput setaf 64)\]"
+YELLOW="\[$(tput setaf 136)\]"
+ORANGE="\[$(tput setaf 166)\]"
+RESET="\[$(tput sgr0)\]"
+
+is_git_repo() {
+  $(git rev-parse --is-inside-work-tree &> /dev/null)
+}
+
+get_git_branch() {
+  local branch_name
+
+  # Get the short symbolic ref
+  branch_name=$(git symbolic-ref --quiet --short HEAD 2> /dev/null) ||
+  # If HEAD isn't a symbolic ref, get the short SHA
+  branch_name=$(git rev-parse --short HEAD 2> /dev/null)
+
+  printf $branch_name
+}
+
+get_git_info() {
+  local git_info git_state uc us ut st
+
+  if ! is_git_repo; then
+    return 1
+  fi
+
+  git_info=$(get_git_branch)
+
+  # Check for uncommitted changes in the index
+  if ! $(git diff --quiet --ignore-submodules --cached); then
+    uc="+"
+  fi
+
+  # Check for unstaged changes
+  if ! $(git diff-files --quiet --ignore-submodules --); then
+    us="!"
+  fi
+
+  # Check for untracked files
+  if [ -n "$(git ls-files --others --exclude-standard)" ]; then
+    ut="?"
+  fi
+
+  # Check for stashed files
+  if $(git rev-parse --verify refs/stash &>/dev/null); then
+    st="$"
+  fi
+
+  git_state=$uc$us$ut$st
+
+  # Combine the branch name and state information
+  if [[ $git_state ]]; then
+    git_info="$git_info[$git_state]"
+  fi
+
+  # Set the final branch string.
+  printf "${BLACK} on ${CYAN}${git_info}"
+}
+
+prompt_command() {
+  PS1="${ORANGE}\u${BLACK} at ${YELLOW}\h${BLACK} in ${GREEN}\W$(get_git_info)\n${BLACK}\$${RESET} "
+}
+
+PROMPT_COMMAND=prompt_command

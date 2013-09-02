@@ -1,0 +1,25 @@
+[apply]
+  whitespace = nowarn
+
+[color]
+  diff = auto
+  status = auto
+  branch = auto
+  ui = auto
+
+[core]
+  excludesfile = ~/.gitignore
+  attributesfile = ~/.gitattributes
+  editro = vim
+
+[credential]
+  helper = osxkeychain
+
+[hub]
+  protocol = https
+
+[pull]
+  rebase = true
+
+[push]
+  default = simple

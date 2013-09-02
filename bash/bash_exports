@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Make Sublime Text 2 the default editor if no other is set
+if [[ "$EDITOR" == "" ]] ; then
+  export EDITOR="subl"
+fi
+
+# Ignore duplicate commands in the history
+export HISTCONTROL=ignoredups
+
+# Enter commands that should not appear in history here
+export HISTIGNORE=""
+
+# Don't clear the screen after quitting a manual page
+export MANPAGER="less -X"
