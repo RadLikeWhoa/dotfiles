@@ -111,9 +111,11 @@ mirrorfiles() {
   link "git/gitattributes" ".gitattributes"
   link "git/gitignore"     ".gitignore"
 
-  # We also want to create an executable for Sublime Text 2 if it's installed
+  # We also want to create an executable for Sublime Text 2 if it's installed.
+  # In the same step we apply user settings.
   if [[ -r /Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl ]]; then
     ln -fs /Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl /usr/local/bin/subl
+    ln -fs ${DOTFILES_DIRECTORY}/subl/User ~/Library/Application\ Support/Sublime\ Text\ 2/Packages/User
   fi
 
   e_success "Dotfiles update complete!"

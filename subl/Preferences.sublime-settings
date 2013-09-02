@@ -1,0 +1,26 @@
+{
+	"bold_folder_labels": true,
+	"color_scheme": "Packages/User/Espresso Soda.tmTheme",
+	"create_window_at_startup": false,
+	"folder_exclude_patterns":
+	[
+		"node_modules",
+		".sass-cache",
+		".git"
+	],
+	"font_face": "Source Code Pro",
+	"font_size": 14.0,
+	"highlight_line": true,
+	"highlight_modified_tabs": true,
+	"hot_exit": false,
+	"line_padding_bottom": 3,
+	"match_brackets_angle": true,
+	"remember_open_files": false,
+	"scroll_past_end": false,
+	"shift_tab_unindent": true,
+	"show_full_path": false,
+	"tab_size": 2,
+	"theme": "Soda Light.sublime-theme",
+	"translate_tabs_to_spaces": true,
+	"trim_trailing_white_space_on_save": true
+}
