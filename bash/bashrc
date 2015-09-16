@@ -4,14 +4,13 @@ declare -a files=(
   $HOME/.dotfiles/bash/bash_options
   $HOME/.dotfiles/bash/bash_exports
   $HOME/.dotfiles/bash/bash_aliases
-  $HOME/.dotfiles/bash/functions/*
   $HOME/.dotfiles/bash/bash_prompt
   $HOME/.dotfiles/bash/bash_rbenv
   $HOME/.bash_profile.local
   $HOME/.dotfiles/bash/bash_paths
 )
 
-# Load custom files (prompt, aliases, functions, rbenv, bash completion)
+# Load custom files (prompt, aliases, rbenv, bash completion)
 for index in ${!files[*]}
 do
   if [[ -r ${files[$index]} ]]; then

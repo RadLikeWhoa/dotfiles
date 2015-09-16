@@ -5,13 +5,13 @@ run_npm() {
     e_header "Installing Node.js packages..."
 
     # List of npm packages
-    local packages="bower grunt-cli jshint karma uglify-js"
+    local packages="bower grunt-cli gulp karma"
 
     # Install packages globally and quietly
     npm install $packages --global --quiet
 
     [[ $? ]] && e_success "Done"
-   else
+  else
     e_error "Error: npm not found."
     printf "Aborting...\n"
     exit

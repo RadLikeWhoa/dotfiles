@@ -3,23 +3,10 @@
 # Allow aliases to be with sudo
 alias sudo="sudo "
 
-# Quickly access and edit aliases
-alias aliases='subl ${HOME}/.dotfiles/bash/bash_aliases '
-
-# Quickly access commonly used directories
-alias d='cd ${HOME}/Dropbox '
-alias g='cd ${HOME}/Dropbox/GitHub '
-alias w='cd ${HOME}/Dropbox/Web '
-
 # Navigate the terminal more easily
 alias ..='cd .. ' # Go up one directory
 alias ...='.. && .. ' # Go up two directories
 alias ....='.. && .. && .. ' # Go up three directories
-alias -- -='cd -'
-
-# IP addresses
-alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
-alias localip="ipconfig getifaddr en1"
 
 # Use `hub` as the git wrapper
 if [ $(type -P 'hub') ]; then
@@ -27,25 +14,34 @@ if [ $(type -P 'hub') ]; then
 fi
 
 # Git shortcuts
-alias ga='git add . '
+alias ga='git add '
+alias gc='git commit '
 alias gac='git add . && git commit '
 alias gb='git checkout '
-alias gc='git commit '
-alias gl='git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset" --abbrev-commit '
+alias gl='git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(cyan)<%an>%Creset" --abbrev-commit '
 alias gr='git rebase -i '
 alias gs='git status '
-alias master='git checkout master '
-alias pages='git checkout gh-pages '
-alias ghp=pages
+alias gm='git checkout master '
+alias gp='git checkout gh-pages '
+
 alias push='git push '
 alias pull='git pull '
-alias branch='git checkout -b '
+
+# List globally installed npm packages without dependencies
+alias nlg='npm list -g --depth=0'
+
+# Misc. commands
+alias maven='mvn '
+
+# Create new directory and move into it
+function md {
+  mkdir $1 && cd $1
+}
 
 # Simple HTTP Server
-alias server='python -m SimpleHTTPServer 8080 ' # Creates a new HTTP server that's accessible via port 8080
-
-# Clean 'Open With...' duplicates
-alias cleanls='/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user '
+function server {
+  python -m SimpleHTTPServer $1
+}
 
 # Show/hide hidden files in Finder
 alias show="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"

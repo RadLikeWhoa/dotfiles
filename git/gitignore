@@ -12,7 +12,7 @@ Thumbs.db
 #########
 *.diff
 *.err
-*.log
+#*.log
 *.orig
 *.pyc
 *.rej

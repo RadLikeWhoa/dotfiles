@@ -16,18 +16,18 @@ run_brew() {
     local list_formulae
     local -a missing_formulae
     local -a desired_formulae=(
-      'coreutils' # GNU core utilities (those that come with OS X are outdated)
+      'coreutils'
       'git'
       'ack'
       'bash-completion'
+      'hub'
       'jpeg'
-      'macvim --override-system-vim'
       'node'
       'optipng'
       'phantomjs'
+      'rbenv'
+      'rbenv-gem-rehash'
       'tree'
-      'wget'
-      'https://raw.github.com/Homebrew/homebrew-dupes/master/rsync.rb' # Avoid using any custom OS X version of rsync
     )
 
     for index in ${!desired_formulae[*]}

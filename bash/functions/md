@@ -1,6 +1,0 @@
-#!/bin/bash
-
-# Create new directory and move into it
-function md {
-  mkdir $1 && cd $1
-}

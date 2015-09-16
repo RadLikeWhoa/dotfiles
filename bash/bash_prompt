@@ -1,19 +1,12 @@
 #!/bin/bash
 
-# Example:
-# Sacha at MacBook in dotfiles on master[+!?$]
-# $
+# Colors: http://web.archive.org/web/20131009193526/http://bitmote.com/index.php?post/2012/11/19/Using-ANSI-Color-Codes-to-Colorize-Your-Bash-Prompt-on-Linux
 
-BLACK="\[$(tput setaf 0)\]"
-CYAN="\[$(tput setaf 37)\]"
-GREEN="\[$(tput setaf 64)\]"
-YELLOW="\[$(tput setaf 136)\]"
-ORANGE="\[$(tput setaf 166)\]"
-RESET="\[$(tput sgr0)\]"
-
-is_git_repo() {
-  $(git rev-parse --is-inside-work-tree &> /dev/null)
-}
+BLUE="$(tput setaf 75)"
+GREY="$(tput setaf 243)"
+RED="$(tput setaf 160)"
+GREEN="$(tput setaf 193)"
+RESET="$(tput sgr0)"
 
 get_git_branch() {
   local branch_name
@@ -27,47 +20,35 @@ get_git_branch() {
 }
 
 get_git_info() {
-  local git_info git_state uc us ut st
+  local git_info
 
-  if ! is_git_repo; then
+  if ! $(git rev-parse --is-inside-work-tree &> /dev/null); then
     return 1
   fi
 
   git_info=$(get_git_branch)
 
-  # Check for uncommitted changes in the index
-  if ! $(git diff --quiet --ignore-submodules --cached); then
-    uc="+"
-  fi
-
-  # Check for unstaged changes
-  if ! $(git diff-files --quiet --ignore-submodules --); then
-    us="!"
-  fi
-
-  # Check for untracked files
-  if [ -n "$(git ls-files --others --exclude-standard)" ]; then
-    ut="?"
-  fi
-
-  # Check for stashed files
-  if $(git rev-parse --verify refs/stash &>/dev/null); then
-    st="$"
-  fi
-
-  git_state=$uc$us$ut$st
-
   # Combine the branch name and state information
-  if [[ $git_state ]]; then
-    git_info="$git_info[$git_state]"
+  if ! [[ $(git status 2>/dev/null) == *'working directory clean'* ]]; then
+    git_info="$git_info [${RED}*${GREY}]"
   fi
 
   # Set the final branch string.
-  printf "${BLACK} on ${CYAN}${git_info}"
+  printf "${GREY} on ${git_info}"
+}
+
+update_terminal_cwd() {
+  # Identify the directory using a "file:" scheme URL,
+  # including the host name to disambiguate local vs.
+  # remote connections. Percent-escape spaces.
+  local SEARCH=' '
+  local REPLACE='%20'
+  local PWD_URL="file://$HOSTNAME${PWD//$SEARCH/$REPLACE}"
+  printf '\e]7;%s\a' "$PWD_URL"
 }
 
 prompt_command() {
-  PS1="${ORANGE}\u${BLACK} at ${YELLOW}\h${BLACK} in ${GREEN}\W$(get_git_info)\n${BLACK}\$${RESET} "
+  PS1="$(update_terminal_cwd)\n${BLUE}\w$(get_git_info)${RESET}\n❯ "
 }
 
 PROMPT_COMMAND=prompt_command
