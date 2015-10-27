@@ -11,6 +11,7 @@ declare -a dirs_to_append=(
   "$HOME/bin"
   "$HOME/.dotfiles/bin"
   "$HOME/.composer/vendor/bin"
+  "$HOME/.cabal/bin"
   "$(brew --prefix coreutils)/libexec/gnubin" # Add brew-installed GNU core utilities bin
   "$(brew --prefix)/share/npm/bin" # Add npm-installed package bin
 )
