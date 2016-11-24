@@ -5,7 +5,6 @@ declare -a files=(
   $HOME/.dotfiles/bash/bash_exports
   $HOME/.dotfiles/bash/bash_aliases
   $HOME/.dotfiles/bash/bash_prompt
-  $HOME/.dotfiles/bash/bash_rbenv
   $HOME/.bash_profile.local
   $HOME/.dotfiles/bash/bash_paths
 )

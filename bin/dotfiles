@@ -14,7 +14,6 @@ cd "${HOME}"
 
 ln -sf "${HOME}/.dotfiles/bash/bashrc"       ".bashrc"
 ln -sf "${HOME}/.dotfiles/bash/bash_profile" ".bash_profile"
-ln -sf "${HOME}/.dotfiles/git/gitattributes" ".gitattributes"
 ln -sf "${HOME}/.dotfiles/git/gitignore"     ".gitignore"
 ln -sf "${HOME}/.dotfiles/misc/inputrc"      ".inputrc"
 ln -sf "${HOME}/.dotfiles/misc/ghci"         ".ghci"

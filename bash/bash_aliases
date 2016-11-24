@@ -5,8 +5,6 @@ alias sudo="sudo "
 
 # Navigate the terminal more easily
 alias ..='cd .. ' # Go up one directory
-alias ...='.. && .. ' # Go up two directories
-alias ....='.. && .. && .. ' # Go up three directories
 
 # Use `hub` as the git wrapper
 if [ $(type -P 'hub') ]; then
@@ -16,15 +14,11 @@ fi
 # Git shortcuts
 alias ga='git add '
 alias gc='git commit '
-alias gac='git add . && git commit '
+alias gac='git add -A && git commit -m '
 alias gb='git checkout '
 alias gl='git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(cyan)<%an>%Creset" --abbrev-commit '
 alias gr='git rebase -i '
-alias gs='git status '
-alias gm='git checkout master '
-alias gp='git checkout gh-pages '
-
-alias remote-tags="git ls-remote -t | awk '{print $2}' | cut -d '/' -f 3 | cut -d '^' -f 1  | sort -b -t . -k 1,1nr -k 2,2nr -k 3,3r -k 4,4r -k 5,5r | uniq"
+alias gs='git status -sb '
 
 alias push='git push '
 alias pull='git pull '
@@ -32,17 +26,9 @@ alias pull='git pull '
 # List globally installed npm packages without dependencies
 alias nlg='npm list -g --depth=0'
 
-# Misc. commands
-alias maven='mvn '
-
 # Create new directory and move into it
 function md {
   mkdir $1 && cd $1
-}
-
-# Simple HTTP Server
-function server {
-  python -m SimpleHTTPServer $1
 }
 
 # Show/hide hidden files in Finder

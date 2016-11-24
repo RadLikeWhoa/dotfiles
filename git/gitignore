@@ -7,15 +7,3 @@
 Icon?
 ehthumbs.db
 Thumbs.db
-
-# Other #
-#########
-*.diff
-*.err
-#*.log
-*.orig
-*.pyc
-*.rej
-*.sass-cache
-*.sw?
-*.vi
