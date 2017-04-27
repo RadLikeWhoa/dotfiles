@@ -6,6 +6,9 @@ alias sudo="sudo "
 # Navigate the terminal more easily
 alias ..='cd .. ' # Go up one directory
 
+# Safely delete things
+alias rm='trash '
+
 # Use `hub` as the git wrapper
 if [ $(type -P 'hub') ]; then
   alias git=hub
