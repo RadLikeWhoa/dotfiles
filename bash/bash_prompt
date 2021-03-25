@@ -37,6 +37,14 @@ get_git_info() {
   printf "${GREY} on ${git_info}"
 }
 
+get_virtualenv () {
+  if test -z "$VIRTUAL_ENV" ; then
+      printf ""
+  else
+      printf "${GREEN}(venv)${RESET} "
+  fi
+}
+
 update_terminal_cwd() {
   # Identify the directory using a "file:" scheme URL,
   # including the host name to disambiguate local vs.
@@ -48,7 +56,7 @@ update_terminal_cwd() {
 }
 
 prompt_command() {
-  PS1="$(update_terminal_cwd)\n${BLUE}\w$(get_git_info)${RESET}\n❯ "
+  PS1="$(update_terminal_cwd)\n$(get_virtualenv)${BLUE}\w$(get_git_info)${RESET}\n❯ "
 }
 
 PROMPT_COMMAND=prompt_command
